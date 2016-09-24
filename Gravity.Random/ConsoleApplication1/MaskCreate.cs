@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Diagnostics;
-using Gravity.Base32;
+using Gravity.TrueRandom;
 using System.IO;
 
 namespace Gravity
@@ -56,17 +56,7 @@ namespace Gravity
             return res.ToString();
         }
 
-        public static byte[] CombineByteArray(Byte[][] bytes)
-        {
-            byte[] start = new byte[0];
-            foreach (byte[] a in bytes)
-            {
-                int b = start.Length;
-                Array.Resize<byte>(ref start, (start.Length + a.Length));
-                Array.Copy(a, 0, start, b, a.Length);
-            }
-            return start;
-        }
+
 
         public static byte[] GetRandomNumber(int min = 0, int max = 100000)
         {
