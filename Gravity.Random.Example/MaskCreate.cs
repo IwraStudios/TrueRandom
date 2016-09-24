@@ -58,7 +58,7 @@ namespace Gravity
 
 
 
-        public static byte[] GetRandomNumber(int min = 0, int max = 100000)
+        public static byte[] GetRandomNumber(int min = 0, int max = int.MaxValue)
         {
             int i = Int32.Parse(System.DateTime.Now.ToString("fff"));
             int d = GetPseudoRandomNumber(i, min, max);
