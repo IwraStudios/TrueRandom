@@ -1,5 +1,5 @@
-# Random
-Striving for as random as possible (library)
+# The Gravity.Random Library
+Striving for as random as possible
 
 The ways we try to achieve "as random as possible":
 
