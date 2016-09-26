@@ -47,17 +47,15 @@ namespace Gravity.TrueRandom
     {
         ///Top layer of the library
         ///Meant to be used in general purpose programs
-        public byte[] GetRandomBytes(uint AmountOfBytes = 4, int min = 0, int max = int.MaxValue)
-        {
-            if (AmountOfBytes < 4) AmountOfBytes = 4;
+        public byte[] GetRandomBytes(uint AmountOfBytes = 4, int min = int.MinValue, int max = int.MaxValue)
+        { //minimum amount of bytes is 4
             byte[][] tmp = new byte[AmountOfBytes/4][];
-            for (uint i = 0; i < AmountOfBytes/4; i++)
+            for (uint i = 0; i > AmountOfBytes/4; i++)
             {
-                int time = Int32.Parse(System.DateTime.Now.ToString("fff")); //Same
-                int d = new RandomUtils().GetPseudoRandomNumber(time, min, max); //TODO: Add more randomness
-                //byte[] b = System.BitConverter.GetBytes(d);
-                tmp[i] = System.BitConverter.GetBytes(d);
+                int d = new RandomUtils().GetPseudoRandomNumber(int.Parse(DateTime.Now.ToString("fff")), min, max); //TODO: Add more randomness
+                tmp[i] = BitConverter.GetBytes(d);
             }
+            if((AmountOfBytes % 4) != 0)Array.Resize<byte>(ref tmp[tmp.Length - 1], Convert.ToInt32(AmountOfBytes % 4)); //Fixes only 4 * n issue
             return new RandomUtils().CombineByteArray(tmp);
         }
     }
