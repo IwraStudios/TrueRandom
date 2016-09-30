@@ -42,10 +42,11 @@ namespace Gravity.TrueRandom
         public string ByteArrayToString(byte[] ba){ //UTF8 Only for now TODO: added other encodings
           return System.Text.Encoding.UTF8.GetString(ba, 0, ba.Length);
         }
-        public async Task<int> InefficientRandomInt(int min = int.MinValue, int max = int.MaxValue){
-          await Task.Delay(this.GetPseudoRandomNumber(0, 1, 16));
-          int time = Int32.Parse(System.DateTime.Now.ToString("fff")); //Same
-          return this.GetPseudoRandomNumber(time, min, max);
+        public int InefficientRandomInt(int min = int.MinValue, int max = int.MaxValue)
+        {
+            System.Threading.Thread.Sleep(this.GetPseudoRandomNumber(0, 1, 16));
+            int time = Int32.Parse(System.DateTime.Now.ToString("fff")); //Same
+            return this.GetPseudoRandomNumber(time, min, max);
         }
         public int EfficientRandomInt(int min = int.MinValue, int max = int.MaxValue)
         {
@@ -63,7 +64,7 @@ namespace Gravity.TrueRandom
         {
             if (AmountOfBytes < 4) AmountOfBytes = 4;
             byte[][] tmp = new byte[AmountOfBytes / 4][];
-            for (uint i = 0; i > (int)Math.Ceiling((double)AmountOfBytes / 4); i++)
+            for (uint i = 0; i < AmountOfBytes / 4; i++)
             {
                 int time = Int32.Parse(System.DateTime.Now.ToString("fff")); //Same
                 int d = new RandomUtils().GetPseudoRandomNumber(time); //TODO: Add more randomness
@@ -75,7 +76,6 @@ namespace Gravity.TrueRandom
         }
         public string GetRandomString(uint Length, Encoding a)
         {
-            byte[] bytes = GetRandomBytes(Length * 5);
             string randomstring = a.GetString(GetRandomBytes(Length * 4));
             return randomstring.Remove(randomstring.Length - ((int)Length + 1), (int)Length);
         }
