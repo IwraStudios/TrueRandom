@@ -7,9 +7,9 @@ using System.Diagnostics;
 using Gravity.TrueRandom;
 using System.IO;
 
-namespace Gravity
+namespace Gravity.TrueRandom
 {
-    class Random_Gravity
+    class MaksCreate
     {
         ///this library can be used seperately
         ///it will auto-detect if random lib is available
@@ -19,16 +19,12 @@ namespace Gravity
         const string Mask3 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
         static void Main(string[] args)
         {
-            if (Type.GetType("Gravity.TrueRandom.RandomUtils") != null) { // if RandomUtils is available
-            //Use truerandom lib
-
-            }
-            else {
+         Gravity.TrueRandom.RandomGenerator g = new RandomGenerator();
+         string s = g.GetRandomString(Convert.ToUInt32(length), Encoding.ASCII);
               // use standard lib
-              string a = GenPass(Alpha1, length);
-              string b = GenPass(Alpha2, length);
-              string c = GenPass(Alpha3, length);
-            }
+              string a = GenPass(Mask1, length);
+              string b = GenPass(Mask2, length);
+              string c = GenPass(Mask3, length);
             //byte[] b = CombineByteArray(a);
             //string e = Convert.ToBase64String(b);
             //string c = Utilities.Base32.ToBase32String(b);
@@ -36,6 +32,7 @@ namespace Gravity
             Console.WriteLine("String [A-Z][0-9] = " + a);
             Console.WriteLine("String [A-Z][0-9][SpChCasual] = " + b);
             Console.WriteLine("String [A-Z][0-9][SpChAll] = " + c);
+            Console.WriteLine(s);
             /*using (StreamWriter writetext = new StreamWriter(path))
             {
                 writetext.WriteLine(a);
