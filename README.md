@@ -11,3 +11,4 @@ Roadmap (3/10/2016(dd/mm/yyyy)):
 * Add v1.0 Release to github
   * debug/release binarys
   * source-code release
+* Add documentation and wiki 
