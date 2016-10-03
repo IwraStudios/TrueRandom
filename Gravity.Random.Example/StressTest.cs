@@ -44,7 +44,10 @@ namespace Gravity.TrueRandom
         [MTAThread]
         static void SubStress()
         {
-            Ran.GetRandomString(100, System.Text.Encoding.UTF8);
+            for (int i = 0; i < 100; i++)
+            {
+                Ran.GetRandomString(100, System.Text.Encoding.UTF8);
+            }
         }
 
         static void DebugA()
@@ -66,9 +69,10 @@ namespace Gravity.TrueRandom
         {
             Console.WriteLine("Command | Action | Description");
             Console.WriteLine("Stress  | Stress | Starts a stress test based on the TrueRandom lib(cpu-bound)");
-            Console.WriteLine("DebugA  | DebugA | Tests all function to check that they work (only debug output)");
-            Console.WriteLine("DebugM  | Debug  | Shows Debug menu");
+            //Console.WriteLine("DebugA  | DebugA | Tests all function to check that they work (only debug output)");
+            //Console.WriteLine("DebugM  | Debug  | Shows Debug menu");
             Console.WriteLine("Help    | SHelp  | Shows this screen");
+            Console.WriteLine("More will be added to this screen in later versions");
             Console.Write("What do you want to do? ");
             string command = Console.ReadLine();
             switch (command)
@@ -77,13 +81,18 @@ namespace Gravity.TrueRandom
                     Debug();
                     break;
                 case "Stress":
-                    Console.Write("Max simlutanius Calculations?");
+                    Console.Write("Max simlutanius Calculations? (doesn't really matter because of windows restrictions)");
                     int amount = int.Parse(Console.ReadLine());
                     if (amount != 0) Stress(amount); else SHelp();
                     break;
                 case "DebugA":
                     break;
                 case "Help":
+                    SHelp();
+                    break;
+                case "Pass":
+                    Console.WriteLine(MaskCreate.GenPass(MaskCreate.Mask2, 20));
+                    Thread.Sleep(10000);
                     SHelp();
                     break;
                 default:
