@@ -9,14 +9,14 @@ using System.IO;
 
 namespace Gravity.TrueRandom
 {
-    class MaksCreate
+    class MaskCreate
     {
         ///this library can be used seperately
         ///it will auto-detect if random lib is available
         static int length = 20;
-        const string Mask1 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-        const string Mask2 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_-+=";
-        const string Mask3 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
+        public const string Mask1 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        public const string Mask2 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_-+=";
+        public const string Mask3 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
         static void Main(string[] args)
         {
          Gravity.TrueRandom.RandomGenerator g = new RandomGenerator();
