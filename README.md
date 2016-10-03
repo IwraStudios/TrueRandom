@@ -12,3 +12,4 @@ Roadmap (3/10/2016(dd/mm/yyyy)):
   * debug/release binarys
   * source-code release
 * Add documentation and wiki 
+* Finish debug/demo Console
