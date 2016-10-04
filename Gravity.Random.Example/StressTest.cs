@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -16,7 +17,7 @@ namespace Gravity.TrueRandom
         }
         [MTAThread]
         static void Stress(int amount) //Test: 100% CPU in MVS but 20-30% in TaskManager
-        {
+        {                              //Note: compiled higher percentage
             ulong score = 0;
             if (amount <= 0) return;
             List<Thread> threads = new List<Thread>();
@@ -52,8 +53,20 @@ namespace Gravity.TrueRandom
 
         static void DebugA()
         {
+            RandomGenerator ran = new RandomGenerator();
+            RandomUtils utils = new RandomUtils();
+            byte[] bytes = ran.GetRandomBytes();
+            Task<int> inef = utils.InefficientRandomInt(); //Use this with <Task_Name>.Result; to get the return value
+            Console.WriteLine(utils.ByteArrayToHex(bytes));
+            Console.WriteLine(utils.ByteArrayToInt(bytes));
+            Console.WriteLine(utils.ByteArrayToString(bytes));
+            Console.WriteLine(inef.Result);
+            Console.WriteLine(utils.EfficientRandomInt());
+            Console.WriteLine(ran.GetRandomString(10, Encoding.Unicode));
+            SHelp();
 
         }
+
         static void Debug()
         {
             Console.WriteLine("Command | Action | Description");
@@ -69,7 +82,7 @@ namespace Gravity.TrueRandom
         {
             Console.WriteLine("Command | Action | Description");
             Console.WriteLine("Stress  | Stress | Starts a stress test based on the TrueRandom lib(cpu-bound)");
-            //Console.WriteLine("DebugA  | DebugA | Tests all function to check that they work (only debug output)");
+            Console.WriteLine("DebugA  | DebugA | Tests all function to check that they work (only debug output)");
             //Console.WriteLine("DebugM  | Debug  | Shows Debug menu");
             Console.WriteLine("Help    | SHelp  | Shows this screen");
             Console.WriteLine("More will be added to this screen in later versions");
@@ -86,6 +99,7 @@ namespace Gravity.TrueRandom
                     if (amount != 0) Stress(amount); else SHelp();
                     break;
                 case "DebugA":
+                    DebugA();
                     break;
                 case "Help":
                     SHelp();
