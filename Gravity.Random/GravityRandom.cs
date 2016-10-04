@@ -67,8 +67,8 @@ namespace Gravity.TrueRandom
             byte[][] tmp = new byte[AmountOfBytes / 4][];
             for (uint i = 0; i < AmountOfBytes / 4; i++)
             {
-                int time = int.Parse(System.DateTime.Now.ToString("fff")); //Same
-                int d = new RandomUtils().GetPseudoRandomNumber(time); //TODO: Add more randomness
+                int time = int.Parse(DateTime.Now.ToString("fff")); //Same
+                int d = new RandomUtils().GetPseudoRandomNumber(time); //TODO: Add more randomness/New own RandomAlg.
                 //byte[] b = System.BitConverter.GetBytes(d);
                 tmp[i] = BitConverter.GetBytes(d);
             }
