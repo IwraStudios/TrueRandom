@@ -87,6 +87,26 @@ namespace Gravity.TrueRandom
             int time = int.Parse(DateTime.Now.ToString("fff")); //Same
             return GetPseudoRandomNumber(time, min, max);
         }
+        /// <summary>
+        /// long wich will be randomly generated using Stefan Steinegger's Random "Scrambler"
+        /// </summary>
+        /// <param name="number">long seed</param>
+        /// <param name="max">maximal amount</param>
+        /// <returns>Int64(long) wich will be generated</returns>
+        public long Scramble(long number, long max) 
+        { // http://stackoverflow.com/questions/1537921/simple-pseudo-random-algorithm
+        // some random values 
+        long[] scramblers = { 3, 5, 7, 31, 343, 2348, 89897 };
+        number += (max / 7) + 6;
+        number %= max;
+        // shuffle according to divisibility
+        foreach (long scrambler in scramblers) 
+        {
+        if (scrambler >= max / 3) break;
+         number = ((number * scrambler) % max) + ((number * scrambler) / max);
+        }
+        return number % max;
+        }
     }
 
     /// <summary>
@@ -114,6 +134,7 @@ namespace Gravity.TrueRandom
             if ((AmountOfBytes % 4) != 0) Array.Resize<byte>(ref tmp[tmp.Length - 1], Convert.ToInt32(AmountOfBytes % 4)); //Fixes only 4 * n issue
             return new RandomUtils().CombineByteArray(tmp);
         }
+        //TODO: add new GetRandomBytes based on the Scramble algorithm (possibly more efficient and portable)
         /// <summary>
         /// Randomly generated string with (uint) length
         /// </summary>
